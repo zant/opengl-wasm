@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <GL/glew.h>
+#include "Renderer.h"
+#include "Shader.h"
 #include <GLFW/glfw3.h>
 
 #ifdef __EMSCRIPTEN__
@@ -92,6 +93,8 @@ int main() {
 
   if (glewInit() != GLEW_OK)
     return -1;
+
+  Shader::loadShader("../res/shaders/Main.vert");
 
   int vertexShader = glCreateShader(GL_VERTEX_SHADER);
   glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);

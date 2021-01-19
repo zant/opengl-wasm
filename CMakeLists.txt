@@ -1,6 +1,6 @@
 # Projects Settings
 cmake_minimum_required (VERSION 3.1)
-project (opengl-wasm)
+project (woxel)
 
 file(GLOB ROOT_SOURCE ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB ROOT_HEADER ${PROJECT_SOURCE_DIR}/src/*.h)

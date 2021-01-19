@@ -97,15 +97,8 @@ int main() {
   int vertexShader = Shader::loadShader("../res/shaders/Main.vert");
   int fragmentShader = Shader::loadShader("../res/shaders/Main.frag");
 
-  int shaderProgram = glCreateProgram();
-  glAttachShader(shaderProgram, vertexShader);
-  glAttachShader(shaderProgram, fragmentShader);
-  glLinkProgram(shaderProgram);
-
-  glDeleteShader(vertexShader);
-  glDeleteShader(fragmentShader);
-
-  glUseProgram(shaderProgram);
+  Shader program = Shader(vertexShader, fragmentShader);
+  program.bind();
 
   float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
 

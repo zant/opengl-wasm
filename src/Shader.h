@@ -4,10 +4,10 @@
 
 class Shader {
 private:
-  unsigned int m_RendererID;
+  unsigned int m_ProgramID;
 
 public:
-  Shader(){};
+  Shader(int vertexShader, int fragmentShader);
   ~Shader(){};
   void bind() const;
   void unbind() const;

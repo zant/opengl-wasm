@@ -4,7 +4,18 @@
 #include "Shader.h"
 #include "System.h"
 
-void Shader::bind() const { glUseProgram(m_RendererID); }
+Shader::Shader(int vertexShader, int fragmentShader) {
+  m_ProgramID = glCreateProgram();
+  glAttachShader(m_ProgramID, vertexShader);
+  glAttachShader(m_ProgramID, fragmentShader);
+
+  glLinkProgram(m_ProgramID);
+
+  glDeleteShader(vertexShader);
+  glDeleteShader(fragmentShader);
+}
+
+void Shader::bind() const { glUseProgram(m_ProgramID); }
 
 GLuint Shader::loadShader(std::string file) {
   GLuint shader;

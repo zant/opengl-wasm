@@ -92,31 +92,10 @@ int main() {
   glfwMakeContextCurrent(window);
 
   if (glewInit() != GLEW_OK)
-    return -1;
+    forceExit();
 
-  Shader::loadShader("../res/shaders/Main.vert");
-
-  int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-  glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-  glCompileShader(vertexShader);
-  int success;
-  char infoLog[512];
-  glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-  if (!success) {
-    glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-    std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n"
-              << infoLog << std::endl;
-  }
-
-  unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-  glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-  glCompileShader(fragmentShader);
-  glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-  if (!success) {
-    glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-    std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"
-              << infoLog << std::endl;
-  }
+  int vertexShader = Shader::loadShader("../res/shaders/Main.vert");
+  int fragmentShader = Shader::loadShader("../res/shaders/Main.frag");
 
   int shaderProgram = glCreateProgram();
   glAttachShader(shaderProgram, vertexShader);

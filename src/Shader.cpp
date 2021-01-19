@@ -6,7 +6,7 @@
 
 void Shader::bind() const { glUseProgram(m_RendererID); }
 
-void Shader::loadShader(std::string file) {
+GLuint Shader::loadShader(std::string file) {
   GLuint shader;
 
   std::string source = System::readFile(file);
@@ -14,11 +14,12 @@ void Shader::loadShader(std::string file) {
 
   if (extension == "vert") {
     shader = glCreateShader(GL_VERTEX_SHADER);
-  } else if (extension == "frag") {
+  } else {
     shader = glCreateShader(GL_FRAGMENT_SHADER);
   }
 
-  glShaderSource(shader, 1, (char **)&source, NULL);
+  const char *source_c = source.c_str();
+  glShaderSource(shader, 1, &source_c, NULL);
   glCompileShader(shader);
 
   int success;
@@ -27,6 +28,8 @@ void Shader::loadShader(std::string file) {
   glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
   if (!success) {
     glGetShaderInfoLog(shader, 512, NULL, infoLog);
-    std::cout << "Shader compulation failed\n" << infoLog << std::endl;
+    std::cout << "Shader compilation failed\n" << infoLog << std::endl;
   }
+
+  return shader;
 }

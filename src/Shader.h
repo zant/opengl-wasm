@@ -11,5 +11,5 @@ public:
   ~Shader(){};
   void bind() const;
   void unbind() const;
-  static void loadShader(std::string file);
+  static GLuint loadShader(std::string file);
 };

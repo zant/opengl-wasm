@@ -17,7 +17,7 @@ target_compile_options(main PRIVATE -Wall)
 if(CMAKE_CXX_COMPILER MATCHES "/em\\+\\+(-[a-zA-Z0-9.])?$") 
     set_target_properties(main
     PROPERTIES SUFFIX ".html"
-    LINK_FLAGS "-Os -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1")
+    LINK_FLAGS "-Os -s USE_WEBGL2=1 -s FULL_ES3=1 -s USE_GLFW=3 -s WASM=1 --preload-file res/shaders/Main.frag --preload-file res/shaders/Main.vert")
 else()
   # glfw
   add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)

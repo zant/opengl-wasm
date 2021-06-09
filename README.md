@@ -1,4 +1,4 @@
-This is an [emscripten](https://emscripten.org/) project. At the moment, it's just a triangle rendered with OpenGL. The cool thing is that it runs on both Native (OSX, Linux) and Web (WebAssembly) with the help of Emscripten building tooling.
+This is an [emscripten](https://emscripten.org/) project. At the moment, is really just a triangle rendered with OpenGL. However, you can already use it as an starting point for a Native and WASM OpenGL project, as cool thing is that it runs on both Native (OSX, Linux) and Web (WebAssembly) with the help of emscripten tooling.
 
 ### Building
 

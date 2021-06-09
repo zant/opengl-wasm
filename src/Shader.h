@@ -2,6 +2,7 @@
 
 #include <string>
 
+enum ShaderType { Vert, Frag };
 class Shader {
 private:
   unsigned int m_ProgramID;
@@ -11,5 +12,5 @@ public:
   ~Shader(){};
   void bind() const;
   void unbind() const;
-  static GLuint loadShader(std::string file);
+  static GLuint loadShader(std::string file, ShaderType type);
 };

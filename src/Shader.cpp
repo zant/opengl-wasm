@@ -17,13 +17,13 @@ Shader::Shader(int vertexShader, int fragmentShader) {
 
 void Shader::bind() const { glUseProgram(m_ProgramID); }
 
-GLuint Shader::loadShader(std::string file) {
+GLuint Shader::loadShader(std::string file, ShaderType type) {
   GLuint shader;
 
   std::string source = System::readFile(file);
   std::string extension = System::extension(file);
 
-  if (extension == "vert") {
+  if (type == Vert) {
     shader = glCreateShader(GL_VERTEX_SHADER);
   } else {
     shader = glCreateShader(GL_FRAGMENT_SHADER);

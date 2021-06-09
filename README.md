@@ -35,3 +35,5 @@ Python is only really required for the HTTP server, you can serve the `embuild` 
 ```
 sh embuild.sh
 ```
+
+Then, visit `http://localhost:8000`

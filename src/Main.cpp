@@ -32,19 +32,11 @@ static void forceExit() {
 }
 
 #ifdef __EMSCRIPTEN__
-const char *vertexShaderSource = "attribute vec3 c;\n"
-                                 "void main()\n"
-                                 "{\n"
-                                 "   gl_Position = vec4(c, 1.0);\n"
-                                 "}\0";
-#endif
-
-#ifdef __EMSCRIPTEN__
-const char *fragmentShaderSource =
-    "void main()\n"
-    "{\n"
-    "   gl_FragColor = vec4(1.0, 0.5, 0.2, 1.0);\n"
-    "}\n\0";
+  const char *vertexShaderName = "../res/shaders/Vert.web.hlsl";
+  const char *fragmentShaderName = "../res/shaders/Frag.web.hlsl";
+#else
+  const char *vertexShaderName = "../res/shaders/Vert.hlsl";
+  const char *fragmentShaderName = "../res/shaders/Frag.hlsl";
 #endif
 
 static void generateFrame() {
@@ -78,8 +70,10 @@ int main() {
   if (glewInit() != GLEW_OK)
     forceExit();
 
-  int vertexShader = Shader::loadShader("../res/shaders/Main.vert");
-  int fragmentShader = Shader::loadShader("../res/shaders/Main.frag");
+
+
+  int vertexShader = Shader::loadShader(vertexShaderName, Vert);
+  int fragmentShader = Shader::loadShader(fragmentShaderName, Frag);
 
   Shader program = Shader(vertexShader, fragmentShader);
   program.bind();
